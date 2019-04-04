@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PortFolio</title>
+
+
+</head>
+<body onload="myFunction()">
+    <div class="container">
+
+        <h1>Main Portfolio</h1>
+        
+        
+        <div id="demo"></div>
+        
+        <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+<div class="coinmarketcap-currency-widget" data-currencyid="1" data-base="USD" ></div>
+
+<!--
+        <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+<div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="USD"  data-secondary="BTC"></div>
+        
+        <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+<div class="coinmarketcap-currency-widget" data-currencyid="1831" data-base="USD"  data-secondary="BTC"></div>
+        
+        <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+<div class="coinmarketcap-currency-widget" data-currencyid="2" data-base="USD"  data-secondary="BTC"></div>
+-->
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div id="tradingview_7d17f"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/COINBASE-BTCEUR/" rel="noopener" target="_blank"><span class="blue-text">BTCEUR chart</span></a> by TradingView</div>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+  new TradingView.widget(
+  {
+  "width": 980,
+  "height": 610,
+  "symbol": "COINBASE:BTCEUR",
+  "interval": "15",
+  "timezone": "Europe/Madrid",
+  "theme": "Dark",
+  "style": "1",
+  "locale": "en",
+  "toolbar_bg": "#f1f3f6",
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "container_id": "tradingview_7d17f"
+}
+  );
+  </script>
+</div>
+<!-- TradingView Widget END -->
+        
+        
+        
+    </div>
+<br>
+    <div class="container">
+    <button id="button">Update</button>
+    <label id="total"></label>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    //Aqui semmagatzema tota la data amb [id] saccedeix a les monedes del 1 al length
+    var myData;
+    function myFunction() {
+    
+        
+        $.ajax({url: "https://api.coinmarketcap.com/v2/ticker/", success: function(result){
+                    
+                    myData=result.data;
+                    console.log(result.data.length);
+                    }});
+        
+                      
+      $( "#button" ).click(function() {
+          
+//          for(i=0;i<obj[1].length;i++){
+//              myJSON+=JSON.stringify(obj[1][i]);
+//          }
+          var obj=myData;
+          document.getElementById("demo").innerHTML = JSON.stringify(obj[1].id)+" : id</br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].name)+" : name<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].website_slug)+" : website_slug<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].rank)+" : rank<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].circulating_supply)+" : circulating_supply<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].total_supply)+" : total_supply<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].max_supply)+" : max_supply<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].quotes)+" : quotes<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].last_updated)+" : last_updated<br><br><br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].quotes.USD.price)+" : price<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].quotes.USD.volume_24h)+" : volume_24h<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].quotes.USD.market_cap)+" : market_cap<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].quotes.USD.percent_change_1h)+" : percent_change_1h<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].quotes.USD.percent_change_24h)+" : percent_change_24h<br>";
+          document.getElementById("demo").innerHTML += JSON.stringify(obj[1].quotes.USD.percent_change_7d)+" : percent_change_7d<br>";
+    
+          
+    });        
+   }
+
+    
+    
+    </script>
+
+<!--
+  <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script><div class="coinmarketcap-currency-widget" data-currency="bitcoin" data-base="BTC" data-secondary="USD" data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-stats="USD" data-statsticker="false"></div>
+
+ <div class="coinmarketcap-currency-widget" data-currency="ethereum" data-base="BTC" data-secondary="USD" data-ticker="true" data-rank="false" data-marketcap="true" data-volume="true" data-stats="USD" data-statsticker="false"></div>
+-->
+    
+</body>
+</html>
